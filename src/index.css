@@ -22,7 +22,6 @@ body,
 	text-align: center;
 	height: fit-content;
 	width: 60svw;
-	border: 2px solid black;
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -123,7 +122,6 @@ body,
 	transform: translate(-50%, -50%);
 	height: 70vh;
 	width: 50vw;
-	border: 2px solid black;
 	padding: 1.5rem;
 	box-sizing: border-box;
 	overflow: scroll;
@@ -167,7 +165,6 @@ ul li:hover {
 	left: 50%;
 	transform: translate(-50%, -10%);
 	padding: 10px;
-	border: 1px solid black;
 }
 
 .add-poem button {
