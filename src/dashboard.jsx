@@ -2,11 +2,12 @@ import { onAuthStateChanged, signOut } from "firebase/auth"
 import { useEffect, useState } from "react"
 import { auth, db } from "../lib/fbConfigs"
 import { Link, useNavigate } from "react-router-dom"
-import { addDoc, collection, getDocs, doc, deleteDoc } from "firebase/firestore";
+import { addDoc, collection, getDocs, doc, deleteDoc, onSnapshot } from "firebase/firestore";
+import PoemTitleComp from "./Poem-title";
 
 export default function Dashboard() {
     const navigate = useNavigate();
-    let [text, setText] = useState("");
+
     const [user, setUser] = useState(null);
     const [poemsList, setPoemsList] = useState([]);
     useEffect(() => {
@@ -15,25 +16,15 @@ export default function Dashboard() {
             setUser(currentUser);
         })
 
+        onSnapshot(collection(db, "poems"), (snapshot) => {
+            const poemsData = snapshot.docs.map((doc) => ({
+                poem: doc.data().poem,
+                poemId: doc.id,
+                poemTitle: doc.data().title,
+            }));
+            setPoemsList(poemsData);
+        });
 
-        let poemObj = []; // This array will hold all the poem details in an object
-        async function getPoems() {
-
-            const querySnapshot = await getDocs(collection(db, "poems"));
-            querySnapshot.docs.map(doc => {
-                let poemInfo = {
-                    poem: doc.data().poem,
-                    poemId: doc.id,
-                    poemTitle: doc.data().title
-                }
-                poemObj.push(poemInfo);
-            })
-
-            setPoemsList(poemObj);
-        }
-
-
-        getPoems();
 
     }, [])
 
@@ -47,30 +38,13 @@ export default function Dashboard() {
         }
     }
 
-    // NEED TO BE FIXED LATER 
-    // =========== IMPORTANT =============== 
-    /*
-        *
-        *
-        *
-    */
+
     async function handleDelete(poemId) {
         try {
             await deleteDoc(doc(db, "poems", poemId));
-            const querySnapshot = await getDocs(collection(db, "poems"));
-            querySnapshot.docs.map(doc => {
-                let poemInfo = {
-                    poem: doc.data().poem,
-                    poemId: doc.id,
-                    poemTitle: doc.data().title
-                }
-                poemObj.push(poemInfo);
-            })
-
-            setPoemsList(poemObj);
-            alert("Deleted succesfully")
+            alert("Deleted successfully");
         } catch (error) {
-            alert("Error deleting document: ", error);
+            alert("Error deleting document: " + error.message);
         }
     }
 
@@ -95,25 +69,14 @@ export default function Dashboard() {
                         <ul>
                             {
                                 poemsList.map((obj, i) => (
-
-                                    <Link key={i} to={`/dashboard/${obj.poemId}`}>
-                                        <li className="poem-title">
-                                            {obj.poemTitle}
-                                        </li>
-                                        {/* {
-                                            user ? (
-                                                <button onClick={() => handleDelete(obj.poemId)}>🗑️</button>
-                                            ) : null
-                                        } */}
-                                    </Link>
-
+                                    <PoemTitleComp poemInfo={obj} key={i} onDelete={handleDelete} />
                                 ))
                             }
                         </ul>
                     ) : user ? (
-                        <h3>Oops!! Looks like you haven't uploaded any poem yet. Write one now?</h3>
+                        <h3 className="no-poems-msg">Oops!! Looks like you haven't uploaded any poem yet. Write one now?</h3>
                     ) : (
-                        <h3>:{"("} No Poems have been uploaded yet</h3>
+                        <h3 className="no-poems-msg">:{"("} No Poems have been uploaded yet</h3>
                     )
                 }
 

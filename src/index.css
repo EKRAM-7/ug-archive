@@ -291,6 +291,33 @@ ul li:hover {
 	border-radius: 10px;
 }
 
+.poem-title-div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	gap: 5px;
+}
+
+.poem-title-div a {
+	width: 100%;
+}
+
+.poem-title-div button {
+	height: 30px;
+	width: 70px;
+	padding: 1.5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 20px;
+}
+
+.poem-title-div button:hover {
+	background-color: red;
+	color: white;
+}
+
 @media (max-width: 700px) {
 	.container {
 		height: fit-content;
