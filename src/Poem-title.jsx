@@ -1,5 +1,16 @@
 import { Link } from "react-router-dom";
+import {auth} from '../lib/fbConfigs'
+import { onAuthStateChanged } from "firebase/auth";
+import { useEffect, useState } from "react";
+
+
 export default function PoemTitleComp({ poemInfo, onDelete }) {
+    const [user, setUser] = useState(null);
+    useEffect(() => {
+        onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser);
+        })
+    }, [])
 
     return (
 
@@ -9,7 +20,12 @@ export default function PoemTitleComp({ poemInfo, onDelete }) {
                     {poemInfo.poemTitle}
                 </li>
             </Link>
-            <button onClick={() => onDelete(poemInfo.poemId)}>❌</button>
+
+            {
+                user ? (
+                    <button onClick={() => onDelete(poemInfo.poemId)}>❌</button>
+                ) : null
+            }
 
         </div>
     )
