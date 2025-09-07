@@ -120,12 +120,13 @@ body,
 
 .poem-viewer {
 	font-size: medium;
-	background: radial-gradient(circle at center, 
-    #abd6fc 0%,  
-    #84c0f1 40%, 
-    #799fd4 100%  
-  );
-  color: black;
+	background: radial-gradient(circle at center,
+			#ffe6f0 0%,
+			#ff99cc 40%,
+			#ff3399 70%,
+			#cc0066 100%
+	);
+	color: black;
 }
 
 .poems-list {
