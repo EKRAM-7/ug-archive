@@ -100,19 +100,32 @@ body,
 }
 
 .poem-box {
-	position: absolute;
+	/* position: absolute;
 	top: 50%;
 	left: 50%;
-	transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%); */
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
 	align-items: center;
-	height: 70vh;
-	width: 70vw;
+	height: 70dvh;
+	width: 80dvw;
 	font-size: large;
 	background: linear-gradient(to right, #e3e6e9, #b2c9e2);
 	border: 2px solid rgb(26, 182, 47);
+	overflow: scroll;
+	padding: 1rem;
+	/* padding-top: 2rem; */
+}
+
+.poem-viewer {
+	font-size: medium;
+	background: radial-gradient(circle at center, 
+    #abd6fc 0%,  
+    #84c0f1 40%, 
+    #799fd4 100%  
+  );
+  color: black;
 }
 
 .poems-list {
@@ -239,8 +252,8 @@ ul li:hover {
 }
 
 .save-btn:active {
-  transform: translateY(0);
-  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+	transform: translateY(0);
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
 .view-poem-box {
@@ -263,7 +276,7 @@ ul li:hover {
 
 .poem {
 	resize: none;
-	width: 80vw;
+	width: 65dvw;
 	display: block;
 	overflow: scroll;
 	box-sizing: border-box;
@@ -275,6 +288,7 @@ ul li:hover {
 	padding: 10px;
 	outline: none;
 	transition: border-color 0.3s ease;
+	text-align: center;
 }
 
 .poem:focus {
@@ -328,7 +342,7 @@ ul li:hover {
 	}
 
 	.poem {
-		width: 80svw;
-		height: 70svh;
+		width: 90dvw;
+		height: 80dvh;
 	}
 }

@@ -55,13 +55,17 @@ export default function ViewPoem() {
                 user ? (
                     <input value={poemTitle} onChange={(e) => setPoemTitle(e.target.value)} className="poem-heading-input" placeholder="What's the title? 😆">
                     </input>
-                ) : null
+                ) : (
+                    <h1 className="poem-heading">
+                        {poemTitle}
+                    </h1>
+                )
             }
 
             {
                 user ? (
                     <div>
-                        <textarea onChange={(e) => setPoemContent(e.target.value)} value={poemContent} className="poem" placeholder="What's on your mind?">
+                        <textarea onChange={(e) => setPoemContent(e.target.value)} value={poemContent} className="poem">
 
                         </textarea>
                         <button className="save-btn" onClick={handleSaveChanges}>SAVE ✅</button>
@@ -71,14 +75,18 @@ export default function ViewPoem() {
                 ) :
 
                     (
-                        <div className="poem-box">
-                            <h1 className="poem-heading">
-                                {poemTitle}
-                            </h1>
-                            <pre>
-                                {poemContent}
-                            </pre>
+                        // <div className="poem-box">
+
+                        //     <pre>
+                        //         {poemContent}
+                        //     </pre>
+                        // </div>
+                        <div>
+                            <textarea onChange={(e) => setPoemContent(e.target.value)} value={poemContent} className="poem poem-viewer" placeholder="What's on your mind?" disabled>
+
+                            </textarea>
                         </div>
+
                     )
             }
 
