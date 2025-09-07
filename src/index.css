@@ -12,7 +12,7 @@ body,
 	height: 100%;
 	width: 100%;
 	background: linear-gradient(to right, #7fb9f3, #c9e1fa);
-	overflow: hidden;
+	overflow: scroll;
 }
 
 
