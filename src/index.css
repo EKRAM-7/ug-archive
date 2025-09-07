@@ -121,10 +121,10 @@ body,
 .poem-viewer {
 	font-size: medium;
 	background: radial-gradient(circle at center,
-			#ffe6f0 0%,
-			#ff99cc 40%,
-			#ff3399 70%,
-			#cc0066 100%
+			#fff0f6 0%,   /* very pale pink (almost white) */
+    #ffd6e8 40%,  /* soft pastel pink */
+    #ffb3d9 70%,  /* light pink */
+    #ff99cc 100% 
 	);
 	color: black;
 }
