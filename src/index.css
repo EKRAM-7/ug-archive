@@ -9,8 +9,8 @@
 html,
 body,
 #root {
-	height: 100vh;
-	width: 100vw;
+	height: 100dvh;
+	width: 100dvw;
 	background: linear-gradient(to right, #7fb9f3, #c9e1fa);
 	overflow: hidden;
 }
